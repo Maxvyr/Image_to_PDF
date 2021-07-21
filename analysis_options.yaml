@@ -14,6 +14,8 @@ linter:
     avoid_classes_with_only_static_members: false
 
 
+
+
     # ------ Enable individual rules ------ #
     #                 ---                   #
     # These rules here are good but too     #
