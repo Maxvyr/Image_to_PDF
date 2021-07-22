@@ -2,7 +2,7 @@
     package="com.example.image_to_pdf">
    <application
         android:label="image_to_pdf"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
