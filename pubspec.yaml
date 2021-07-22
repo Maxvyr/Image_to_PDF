@@ -25,6 +25,7 @@ dependencies:
   flutter:
     sdk: flutter
   image_picker:
+  intl:
   open_file:
   path:
   path_provider:
