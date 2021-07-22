@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_to_pdf/views/pdf_generate_oage.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -7,7 +10,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var _imageFile;
+  XFile? _imageFile;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +19,31 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      body: const Center(
-        child: SelectableText(
-          "Empty",
-        ),
-      ),
+      body: Center(
+          child: (_imageFile == null)
+              ? const SelectableText(
+                  "Empty",
+                )
+              : Column(
+                  children: [
+                    Image.file(
+                      File(_imageFile!.path),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PdfGeneratePapge(_imageFile!),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Go to pdf',
+                      ),
+                    ),
+                  ],
+                )),
       floatingActionButton: FloatingActionButton(
         onPressed: _pickImage,
         tooltip: 'Increment',
@@ -36,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       setState(() {
         _imageFile = image;
+        print(_imageFile.toString());
       });
     } catch (e) {
       print(e);

@@ -25,7 +25,9 @@ dependencies:
   flutter:
     sdk: flutter
   image_picker:
+  open_file:
   path:
+  path_provider:
   pdf:
 
 dev_dependencies:
