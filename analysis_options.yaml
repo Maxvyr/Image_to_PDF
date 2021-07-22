@@ -43,3 +43,9 @@ linter:
     avoid_print: false
 
     avoid_void_async: false
+
+    prefer_const_constructors_in_immutables: false
+
+    prefer_equal_for_default_values: false
+
+    directives_ordering: false
