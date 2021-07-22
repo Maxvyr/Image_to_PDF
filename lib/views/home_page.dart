@@ -24,25 +24,28 @@ class _MyHomePageState extends State<MyHomePage> {
               ? const SelectableText(
                   "Empty",
                 )
-              : Column(
-                  children: [
-                    Image.file(
-                      File(_imageFile!.path),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PdfGeneratePapge(_imageFile!),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        'Go to pdf',
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Image.file(
+                        File(_imageFile!.path),
                       ),
-                    ),
-                  ],
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  PdfGeneratePapge(_imageFile!),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'Go to pdf',
+                        ),
+                      ),
+                    ],
+                  ),
                 )),
       floatingActionButton: FloatingActionButton(
         onPressed: _pickImage,
