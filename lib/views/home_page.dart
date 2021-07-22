@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:image_to_pdf/views/pdf_generate_oage.dart';
+import 'package:image_to_pdf/views/pdf_generate_page.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
