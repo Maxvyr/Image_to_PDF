@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:image_to_pdf/views/pdf_generate_page.dart';
+import 'package:image_to_pdf/utils/pdf_api.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -102,13 +102,9 @@ class ViewImageSelected extends StatelessWidget {
             height: 20.0,
           ),
           ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PdfGeneratePapge(imageFile),
-                ),
-              );
+            onPressed: () async {
+              final pdfFile = await PdfApi.generateImage(imageFile);
+              PdfApi.openFile(pdfFile);
             },
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.3,
