@@ -24,6 +24,7 @@ dependencies:
   cupertino_icons:
   flutter:
     sdk: flutter
+  flutter_svg:
   image_picker:
   intl:
   open_file:

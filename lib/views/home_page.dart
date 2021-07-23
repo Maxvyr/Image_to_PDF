@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_to_pdf/views/pdf_generate_page.dart';
 
@@ -11,7 +12,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   XFile? _imageFile;
-  final _radius = 50.0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,48 +26,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: Center(
-          child: (_imageFile == null)
-              ? const Text(
-                  "Empty",
-                )
-              : SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Card(
-                        elevation: 12.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(_radius),
-                        ),
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.7,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(_radius),
-                            child: Image.file(
-                              File(_imageFile!.path),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  PdfGeneratePapge(_imageFile!),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          'Go to pdf',
-                        ),
-                      ),
-                    ],
-                  ),
-                )),
+        child: (_imageFile == null)
+            ? ViewImageEmpty()
+            : ViewImageSelected(_imageFile!),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _pickImage,
         tooltip: 'Increment',
@@ -88,5 +50,82 @@ class _MyHomePageState extends State<MyHomePage> {
     } catch (e) {
       print(e);
     }
+  }
+}
+
+class ViewImageEmpty extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    const _radius = 50.0;
+    return Card(
+      elevation: 12.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(_radius),
+      ),
+      child: SizedBox(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(_radius),
+          child: Image.asset(
+            "assets/img/empty.jpg",
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ViewImageSelected extends StatelessWidget {
+  final XFile imageFile;
+  const ViewImageSelected(this.imageFile);
+
+  @override
+  Widget build(BuildContext context) {
+    const _radius = 50.0;
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Card(
+            elevation: 12.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(_radius),
+            ),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.7,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(_radius),
+                child: Image.file(
+                  File(imageFile.path),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PdfGeneratePapge(imageFile),
+                ),
+              );
+            },
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * 0.3,
+              child: const Center(
+                child: Text(
+                  "Go to pdf",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
