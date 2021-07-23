@@ -29,11 +29,22 @@ class _MyHomePageState extends State<MyHomePage> {
             ? ViewImageEmpty()
             : ViewImageSelected(_imageFile!),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _pickImage,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: (_imageFile == null)
+          ? FloatingActionButton.extended(
+              onPressed: _pickImage,
+              tooltip: 'Increment',
+              label: Row(
+                children: [
+                  const Icon(Icons.add),
+                  const Text("Choix de l'image"),
+                ],
+              ),
+            )
+          : FloatingActionButton(
+              onPressed: _pickImage,
+              tooltip: 'Increment',
+              child: const Icon(Icons.add),
+            ),
     );
   }
 
