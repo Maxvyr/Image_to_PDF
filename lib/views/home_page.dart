@@ -26,7 +26,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: (_imageFile == null)
-            ? ViewImageEmpty()
+            ? ViewImageEmpty(
+                callback: _pickImage,
+              )
             : ViewImageSelected(_imageFile!),
       ),
       floatingActionButton: (_imageFile == null)
@@ -55,7 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
       setState(() {
         _imageFile = image;
-        print(_imageFile.toString());
       });
     } catch (e) {
       print(e);
@@ -64,19 +65,27 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class ViewImageEmpty extends StatelessWidget {
+  final VoidCallback callback;
+
+  ViewImageEmpty({required this.callback});
+
   @override
   Widget build(BuildContext context) {
     const _radius = 50.0;
-    return Card(
-      elevation: 12.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(_radius),
-      ),
-      child: SizedBox(
-        child: ClipRRect(
+    return InkWell(
+      onTap: callback,
+      child: Card(
+        elevation: 12.0,
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(_radius),
-          child: Image.asset(
-            "assets/img/empty.jpg",
+        ),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.95,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(_radius),
+            child: Image.asset(
+              "assets/img/empty.jpg",
+            ),
           ),
         ),
       ),
