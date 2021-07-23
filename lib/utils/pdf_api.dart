@@ -23,7 +23,7 @@ class PdfApi {
             pageFormat: PdfPageFormat.a4,
             buildBackground: (context) {
               return pw.FullPage(
-                ignoreMargins: true,
+                ignoreMargins: false,
                 child: pw.Image(
                   image,
                   fit: pw.BoxFit.cover,
@@ -32,7 +32,10 @@ class PdfApi {
             }),
         build: (pw.Context context) {
           // empty body but her can add watermark example
-          return pw.SizedBox();
+          return pw.Image(
+            image,
+            fit: pw.BoxFit.cover,
+          );
         },
       ),
     );
