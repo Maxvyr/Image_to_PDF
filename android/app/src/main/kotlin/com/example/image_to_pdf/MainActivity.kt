@@ -1,4 +1,4 @@
-package com.example.image_to_pdf
+package com.pandamy.image_to_pdf
 
 import io.flutter.embedding.android.FlutterActivity
 
