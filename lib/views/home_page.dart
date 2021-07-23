@@ -11,24 +11,45 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   XFile? _imageFile;
+  final _radius = 50.0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        title: const Text(
+          "Image To PDF",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
       body: Center(
           child: (_imageFile == null)
-              ? const SelectableText(
+              ? const Text(
                   "Empty",
                 )
               : SingleChildScrollView(
                   child: Column(
                     children: [
-                      Image.file(
-                        File(_imageFile!.path),
+                      Card(
+                        elevation: 12.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(_radius),
+                        ),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.7,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(_radius),
+                            child: Image.file(
+                              File(_imageFile!.path),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20.0,
                       ),
                       ElevatedButton(
                         onPressed: () {
