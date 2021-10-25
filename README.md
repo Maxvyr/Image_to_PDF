@@ -15,7 +15,7 @@ A new Flutter project to convert image from your gallery to PDF.
 
 
 ## Setup the project in Android studio
-1. Download the project code, preferably using `git clone https://github.com/Maxvyr/meditation_app.git`.
+1. Download the project code, preferably using `git clone https://github.com/Maxvyr/Image_to_PDF.git`.
 2. In Android Studio, select *File* | *Open...*
 3. Select the project
      
