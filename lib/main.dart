@@ -4,9 +4,11 @@ import 'package:image_to_pdf/views/home_page.dart';
 
 void main() {
   // change color bar android
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.green,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.green,
+    ),
+  );
   runApp(MyApp());
 }
 

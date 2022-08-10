@@ -20,16 +20,17 @@ class PdfApi {
     pdf.addPage(
       pw.Page(
         pageTheme: pw.PageTheme(
-            pageFormat: PdfPageFormat.a4,
-            buildBackground: (context) {
-              return pw.FullPage(
-                ignoreMargins: false,
-                child: pw.Image(
-                  image,
-                  fit: pw.BoxFit.cover,
-                ),
-              );
-            }),
+          pageFormat: PdfPageFormat.a4,
+          buildBackground: (context) {
+            return pw.FullPage(
+              ignoreMargins: false,
+              child: pw.Image(
+                image,
+                fit: pw.BoxFit.cover,
+              ),
+            );
+          },
+        ),
         build: (pw.Context context) {
           // empty body but her can add watermark example
           return pw.Image(

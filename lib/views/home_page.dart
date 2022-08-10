@@ -51,9 +51,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
+    final ImagePicker picker = ImagePicker();
     try {
-      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+      final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
       setState(() {
         _imageFile = image;
@@ -71,18 +71,18 @@ class ViewImageEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const _radius = 50.0;
+    const radius = 50.0;
     return InkWell(
       onTap: callback,
       child: Card(
         elevation: 12.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(_radius),
+          borderRadius: BorderRadius.circular(radius),
         ),
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.95,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(_radius),
+            borderRadius: BorderRadius.circular(radius),
             child: Image.asset(
               "assets/img/empty.jpg",
             ),
@@ -99,19 +99,19 @@ class ViewImageSelected extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const _radius = 50.0;
+    const radius = 50.0;
     return SingleChildScrollView(
       child: Column(
         children: [
           Card(
             elevation: 12.0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(_radius),
+              borderRadius: BorderRadius.circular(radius),
             ),
             child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.7,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(_radius),
+                borderRadius: BorderRadius.circular(radius),
                 child: Image.file(
                   File(imageFile.path),
                 ),
